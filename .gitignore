@@ -1,0 +1,11 @@
+*.iml
+.idea/
+.classpath
+.project
+.settings/
+.cache-main
+.cache-tests
+target/
+project/target
+dependency-reduced-pom.xml
+/bin/
