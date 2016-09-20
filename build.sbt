@@ -16,10 +16,23 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "2.2.1" % "test"
 )
 
+libraryDependencies += "com.databricks" %% "spark-csv" % "1.3.0"
+libraryDependencies += "org.apache.wss4j" % "wss4j" % "2.1.7"
+libraryDependencies += "org.apache.wss4j" % "wss4j-ws-security-common" % "2.1.7"
+libraryDependencies += "org.apache.wss4j" % "wss4j-parent" % "2.1.7"
+libraryDependencies += "org.apache.wss4j" % "wss4j-bindings" % "2.1.7"
+libraryDependencies += "org.apache.wss4j" % "wss4j-policy" % "2.1.7"
+libraryDependencies += "org.apache.wss4j" % "wss4j-ws-security-dom" % "2.1.7"
+libraryDependencies += "org.apache.wss4j" % "wss4j-ws-security-stax" % "2.1.7"
+libraryDependencies += "org.apache.wss4j" % "wss4j-integration" % "2.1.7"
+libraryDependencies += "org.apache.wss4j" % "wss4j-ws-security-policy-stax" % "2.1.7"
+libraryDependencies += "org.springframework.ws" % "spring-ws-core" % "2.3.0.RELEASE"
+libraryDependencies += "net.sf.saxon" % "Saxon-HE" % "9.7.0-8"
+
 parallelExecution in Test := false
 
 // Spark Package Details (sbt-spark-package)
-spName := "springml/spark-salesforce"
+spName := "springml/spark-workday"
 spAppendScalaVersion := true
 sparkVersion := "1.6.0"
 sparkComponents += "sql"
