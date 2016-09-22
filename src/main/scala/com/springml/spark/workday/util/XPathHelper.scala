@@ -1,8 +1,6 @@
 package com.springml.spark.workday.util
 
 import java.io.{ByteArrayOutputStream, StringReader}
-import java.util
-import java.util.Map.Entry
 import javax.xml.transform.stream.StreamSource
 
 import net.sf.saxon.lib.NamespaceConstant
@@ -15,8 +13,8 @@ import org.apache.log4j.Logger
   * But the difference is that it returns list of String instead of appending all strings into a single String
   */
 class XPathHelper(
-                 val namespaceMap : util.HashMap[String, String],
-                 val featureMappings : util.HashMap[String, String]
+                 val namespaceMap : Map[String, String],
+                 val featureMappings : Map[String, String]
                  ) {
   @transient val logger = Logger.getLogger(classOf[XPathHelper])
 
@@ -26,7 +24,7 @@ class XPathHelper(
   @transient var builder : DocumentBuilder = null
 
   private def init(xpath : String) {
-    try
+    try {
       // Get the processor
       val proc = new Processor(false)
       // Set any specified configuration properties for the processor
@@ -50,7 +48,7 @@ class XPathHelper(
       serializer.setOutputProperty(Serializer.Property.METHOD, "xml")
       serializer.setOutputProperty(Serializer.Property.OMIT_XML_DECLARATION, "yes")
       serializer.setProcessor(proc)
-
+    }
     catch {
       case e: SaxonApiException => {
         throw new Exception(e.getMessage, e)
@@ -80,6 +78,26 @@ class XPathHelper(
     resultList
   }
 
+  def evaluateToString(xpath : String, content : String) : String = {
+    init(xpath)
+
+    // Prepare to evaluate the XPath expression against the content
+    val source = new StreamSource(new StringReader(content))
+    val xmlDoc = builder.build(source)
+    xsel.setContextItem(xmlDoc)
+    resetSerializer
+
+    val results = xsel.evaluate()
+    val iter = results.iterator()
+    while (iter.hasNext) {
+      val item = iter.next()
+      serializer.serializeXdmValue(item)
+
+    }
+
+    (new String(baos.toByteArray(), CharEncoding.UTF_8))
+  }
+
   private def resetSerializer {
     //Reset the serializer
     serializer.close()
@@ -87,7 +105,7 @@ class XPathHelper(
   }
 
   private def setPrefixNamespaceMappings(xpathCompiler: XPathCompiler,
-                                         namespaceMappings: util.HashMap[String, String]) {
+                                         namespaceMappings: Map[String, String]) {
     for ((k,v) <- namespaceMappings) {
       xpathCompiler.declareNamespace(k, v)
     }

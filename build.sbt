@@ -5,6 +5,7 @@ organization := "com.springml"
 scalaVersion := "2.10.6"
 
 resolvers += "sonatype-snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
+resolvers += "bintray-spark-packages" at "https://dl.bintray.com/spark-packages/maven/"
 resolvers += Resolver.url("artifactory", url("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases"))(Resolver.ivyStylePatterns)
 resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
 resolvers += "sonatype-releases" at "https://oss.sonatype.org/content/repositories/releases/"
@@ -37,7 +38,9 @@ spAppendScalaVersion := true
 sparkVersion := "1.6.0"
 sparkComponents += "sql"
 
-// Maven Details
+spDependencies += "elsevierlabs-os/spark-xml-utils:1.3.0"
+
+  // Maven Details
 publishMavenStyle := true
 spIncludeMaven := true
 spShortDescription := "Spark Workday Connector"

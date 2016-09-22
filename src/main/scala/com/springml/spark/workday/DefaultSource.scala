@@ -58,4 +58,5 @@ class DefaultSource extends RelationProvider with SchemaRelationProvider with Cr
     parameters.getOrElse(paramName,
       sys.error(s"""'$paramName' must be specified for Spark Workday package"""))
   }
+
 }
