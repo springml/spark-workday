@@ -4,9 +4,9 @@ import com.springml.spark.workday.model.WWSInput
 import com.springml.spark.workday.util.{CSVUtil, XPathHelper}
 import com.springml.spark.workday.ws.WWSClient
 import org.apache.log4j.Logger
-import org.apache.spark.sql.{DataFrame, SQLContext, SaveMode}
 import org.apache.spark.sql.sources.{BaseRelation, CreatableRelationProvider, RelationProvider, SchemaRelationProvider}
 import org.apache.spark.sql.types.StructType
+import org.apache.spark.sql.{DataFrame, SQLContext, SaveMode}
 
 /**
   * Created by sam on 20/9/16.
@@ -33,16 +33,18 @@ class DefaultSource extends RelationProvider with SchemaRelationProvider with Cr
     val wwsInput = new WWSInput(username, password, wwsEndpoint, request)
     // TODO : Read multiple times using page option
     val response = new WWSClient(wwsInput) execute()
+    logger.debug("Response from WWS " + response)
 
     val xpathMap = CSVUtil.readCSV(xpath)
+    logger.debug("XPath Map " + xpathMap)
     val namespaceMap = CSVUtil.readCSV(namespacePrefix.get)
+    logger.debug("Namespace Map" + namespaceMap)
 
     val xPathHelper = new XPathHelper(namespaceMap, null)
-    val xmlRecords = xPathHelper.evaluate(objectTag, request)
+    val xmlRecords = xPathHelper.evaluate(objectTag, response)
+    logger.debug("Number of records " + xmlRecords.size)
 
-    // TODO : construct dataframe using xmlRecords
-    // Do it in parallel
-    null
+    new DatasetRelation(xmlRecords, xpathMap, namespaceMap, sqlContext, schema)
   }
 
   override def createRelation(sqlContext: SQLContext,
@@ -55,8 +57,14 @@ class DefaultSource extends RelationProvider with SchemaRelationProvider with Cr
 
   private def param(parameters: Map[String, String],
                     paramName: String) : String = {
-    parameters.getOrElse(paramName,
+    val paramValue = parameters.getOrElse(paramName,
       sys.error(s"""'$paramName' must be specified for Spark Workday package"""))
+
+    if ("password".equals(paramName)) {
+      logger.debug("Param " + paramName + " value " + paramValue)
+    }
+
+    paramValue
   }
 
 }

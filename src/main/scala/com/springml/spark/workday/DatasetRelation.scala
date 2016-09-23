@@ -1,15 +1,14 @@
 package com.springml.spark.workday
 
-import java.sql.{Date, Timestamp}
-import java.util.HashMap
 import java.math.BigDecimal
+import java.sql.{Date, Timestamp}
 
 import com.springml.spark.workday.util.XPathHelper
 import org.apache.log4j.Logger
 import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.{Row, SQLContext}
 import org.apache.spark.sql.sources.{BaseRelation, TableScan}
 import org.apache.spark.sql.types._
+import org.apache.spark.sql.{Row, SQLContext}
 
 /**
   * DatasetRelation for Workday
@@ -24,13 +23,14 @@ class DatasetRelation(
 
   @transient val logger = Logger.getLogger(classOf[DatasetRelation])
 
-  private val records = read()
   private val xPathHelper = new XPathHelper(namespaceMap, null)
+  private val records = read()
 
   def read(row: String): scala.collection.mutable.Map[String, String]= {
     var record = scala.collection.mutable.Map[String, String]()
     for ((column, xpath) <- xpathMap) {
       val result = xPathHelper.evaluateToString(xpath, row)
+      logger.debug("Xpath evaluation response for xpath " + xpath + " \n" + result)
       record(column) = result
       // TODO Handle details
     }

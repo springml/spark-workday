@@ -3,7 +3,6 @@ package com.springml.spark.workday.ws
 import org.apache.log4j.Logger
 import org.apache.wss4j.common.WSS4JConstants
 import org.apache.wss4j.common.ext.WSSecurityException
-import org.apache.wss4j.dom.WSConstants
 import org.apache.wss4j.dom.message.{WSSecHeader, WSSecUsernameToken}
 import org.springframework.ws.WebServiceMessage
 import org.springframework.ws.client.core.WebServiceMessageCallback
@@ -26,6 +25,7 @@ class UsernameTokenHandler(
     wSSecUsernameToken.addNonce()
     wSSecUsernameToken.setUserInfo(username, password)
 
+    logger.debug("Adding username and password using UsernameTokenHandler")
     val secHeader: WSSecHeader = new WSSecHeader(doc)
     secHeader.setMustUnderstand(false)
     try {

@@ -8,9 +8,10 @@ import net.sf.saxon.s9api._
 import org.apache.commons.lang3.CharEncoding
 import org.apache.log4j.Logger
 
+import scala.collection.mutable.ListBuffer
+
 /**
-  * This is same as XPathProcessor from spark-xml-utls.
-  * But the difference is that it returns list of String instead of appending all strings into a single String
+  * Helper for XPath operations
   */
 class XPathHelper(
                  val namespaceMap : Map[String, String],
@@ -25,6 +26,7 @@ class XPathHelper(
 
   private def init(xpath : String) {
     try {
+      logger.debug("Initializing XPath Processor with " + xpath)
       // Get the processor
       val proc = new Processor(false)
       // Set any specified configuration properties for the processor
@@ -57,28 +59,34 @@ class XPathHelper(
   }
 
   def evaluate(xpath : String, content : String) : List[String] = {
+    logger.debug("Xpath : " + xpath)
+    logger.debug("XML Content: " + content)
     init(xpath)
 
     // Prepare to evaluate the XPath expression against the content
     val source = new StreamSource(new StringReader(content))
     val xmlDoc = builder.build(source)
     xsel.setContextItem(xmlDoc)
-    var resultList = List[String]()
+    var resultListBuf = new ListBuffer[String]()
 
     val results = xsel.evaluate()
     val iter = results.iterator()
+    logger.debug("Has records ?" + iter.hasNext)
     while (iter.hasNext) {
       val item = iter.next()
+      logger.debug("item : " + item)
       resetSerializer
       serializer.serializeXdmValue(item)
 
-      resultList.+:(new String(baos.toByteArray(), CharEncoding.UTF_8))
+      resultListBuf += (new String(baos.toByteArray(), CharEncoding.UTF_8))
     }
 
-    resultList
+    resultListBuf.toList
   }
 
   def evaluateToString(xpath : String, content : String) : String = {
+    logger.debug("Xpath : " + xpath)
+    logger.debug("XML Content: " + content)
     init(xpath)
 
     // Prepare to evaluate the XPath expression against the content

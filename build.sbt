@@ -32,6 +32,11 @@ libraryDependencies += "net.sf.saxon" % "Saxon-HE" % "9.7.0-8"
 
 parallelExecution in Test := false
 
+assemblyMergeStrategy in assembly := {
+ case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+ case x => MergeStrategy.first
+}
+
 // Spark Package Details (sbt-spark-package)
 spName := "springml/spark-workday"
 spAppendScalaVersion := true

@@ -4,6 +4,7 @@ import java.io.{StringReader, StringWriter}
 import javax.xml.transform.stream.{StreamResult, StreamSource}
 
 import com.springml.spark.workday.model.WWSInput
+import org.apache.log4j.Logger
 import org.springframework.ws.client.core.WebServiceTemplate
 
 /**
@@ -13,10 +14,13 @@ class WWSClient(
                val wwsInput : WWSInput
                ) {
 
+  @transient val logger = Logger.getLogger(classOf[WWSClient])
+
   def execute() : String = {
     val source = new StreamSource(new StringReader(wwsInput.request))
     val writer = new StringWriter
     val streamResult = new StreamResult(writer)
+    logger.debug("Executing WWS")
     webServiceTemplate.sendSourceAndReceiveToResult(source, usernameTokenHandler, streamResult)
 
     return writer.toString
