@@ -3,6 +3,7 @@ package com.springml.spark.workday
 import java.math.BigDecimal
 import java.sql.{Date, Timestamp}
 
+import com.springml.spark.workday.model.XPathInput
 import com.springml.spark.workday.util.XPathHelper
 import org.apache.log4j.Logger
 import org.apache.spark.rdd.RDD
@@ -10,32 +11,47 @@ import org.apache.spark.sql.sources.{BaseRelation, TableScan}
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.{Row, SQLContext}
 
+import scala.collection.mutable
+
 /**
   * DatasetRelation for Workday
   */
 class DatasetRelation(
                        xmlRecords : List[String],
-                       xpathMap : Map[String, String],
-                       namespaceMap : Map[String, String],
+                       xPathInput: XPathInput,
                        sparkSqlContext : SQLContext,
                        userSchema : StructType
                      ) extends BaseRelation with TableScan {
 
   @transient val logger = Logger.getLogger(classOf[DatasetRelation])
 
-  private val xPathHelper = new XPathHelper(namespaceMap, null)
+  private val xPathHelper = new XPathHelper(xPathInput.namespaceMap, null)
   private val records = read()
 
-  def read(row: String): scala.collection.mutable.Map[String, String]= {
+  def read(detail: String, headerRecord: mutable.Map[String, String]): mutable.Map[String, String] = {
     var record = scala.collection.mutable.Map[String, String]()
-    for ((column, xpath) <- xpathMap) {
-      val result = xPathHelper.evaluateToString(xpath, row)
-      logger.debug("Xpath evaluation response for xpath " + xpath + " \n" + result)
+    record ++= headerRecord
+    for ((column, xpath) <- xPathInput.detailsMap) {
+      val result = xPathHelper.evaluateToString(xpath, detail)
+      logger.info("Xpath evaluation response for xpath " + xpath + " \n" + result)
       record(column) = result
-      // TODO Handle details
     }
 
     record
+  }
+
+  def read(row: String): List[scala.collection.mutable.Map[String, String]] = {
+    var headerRecord = scala.collection.mutable.Map[String, String]()
+    for ((column, xpath) <- xPathInput.headersMap) {
+      val result = xPathHelper.evaluateToString(xpath, row)
+      logger.debug("Xpath evaluation response for xpath " + xpath + " \n" + result)
+      headerRecord(column) = result
+    }
+
+    val details = xPathHelper.evaluate(xPathInput.detailTag, row)
+    logger.info("Details Count " + details.size)
+
+    details.map(detail => read(detail, headerRecord))
   }
 
   private def read() : List[scala.collection.mutable.Map[String, String]] = {

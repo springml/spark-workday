@@ -1,6 +1,6 @@
 package com.springml.spark.workday
 
-import com.springml.spark.workday.model.WWSInput
+import com.springml.spark.workday.model.{WWSInput, XPathInput}
 import com.springml.spark.workday.util.{CSVUtil, XPathHelper}
 import com.springml.spark.workday.ws.WWSClient
 import org.apache.log4j.Logger
@@ -26,6 +26,7 @@ class DefaultSource extends RelationProvider with SchemaRelationProvider with Cr
     val password = param(parameters, "password")
     val wwsEndpoint = param(parameters, "wwsEndpoint")
     val objectTag = param(parameters, "objectTagPath")
+    val detailsTag = param(parameters, "detailsTagPath")
     val request = param(parameters, "request")
     val xpath = param(parameters, "xpathMap")
     val namespacePrefix = parameters.get("namespacePrefixMap")
@@ -35,16 +36,16 @@ class DefaultSource extends RelationProvider with SchemaRelationProvider with Cr
     val response = new WWSClient(wwsInput) execute()
     logger.debug("Response from WWS " + response)
 
-    val xpathMap = CSVUtil.readCSV(xpath)
-    logger.debug("XPath Map " + xpathMap)
-    val namespaceMap = CSVUtil.readCSV(namespacePrefix.get)
-    logger.debug("Namespace Map" + namespaceMap)
+    val xPathInput = new XPathInput(objectTag, detailsTag)
+    CSVUtil.populateXPathInput(xpath, xPathInput)
+    xPathInput.namespaceMap = CSVUtil.readCSV(namespacePrefix.get)
+    logger.debug("Namespace Map" + xPathInput.namespaceMap)
 
-    val xPathHelper = new XPathHelper(namespaceMap, null)
+    val xPathHelper = new XPathHelper(xPathInput.namespaceMap, null)
     val xmlRecords = xPathHelper.evaluate(objectTag, response)
     logger.debug("Number of records " + xmlRecords.size)
 
-    new DatasetRelation(xmlRecords, xpathMap, namespaceMap, sqlContext, schema)
+    new DatasetRelation(xmlRecords, xPathInput, sqlContext, schema)
   }
 
   override def createRelation(sqlContext: SQLContext,
