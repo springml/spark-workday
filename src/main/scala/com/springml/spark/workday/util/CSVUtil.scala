@@ -37,10 +37,10 @@ object CSVUtil {
         } else {
           xPathInput.headersMap += fieldName -> xpath
         }
+      }
 
       bufferedSource.close()
     }
-
   }
 
 }

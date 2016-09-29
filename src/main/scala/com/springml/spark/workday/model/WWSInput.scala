@@ -7,7 +7,7 @@ class WWSInput(
               val username : String,
               val password : String,
               val wssEndpoint : String,
-              val request : String
+              var request : String
               ) {
 
 }

@@ -1,8 +1,7 @@
 package com.springml.spark.workday
 
 import com.springml.spark.workday.model.{WWSInput, XPathInput}
-import com.springml.spark.workday.util.{CSVUtil, XPathHelper}
-import com.springml.spark.workday.ws.WWSClient
+import com.springml.spark.workday.util.CSVUtil
 import org.apache.log4j.Logger
 import org.apache.spark.sql.sources.{BaseRelation, CreatableRelationProvider, RelationProvider, SchemaRelationProvider}
 import org.apache.spark.sql.types.StructType
@@ -32,20 +31,13 @@ class DefaultSource extends RelationProvider with SchemaRelationProvider with Cr
     val namespacePrefix = parameters.get("namespacePrefixMap")
 
     val wwsInput = new WWSInput(username, password, wwsEndpoint, request)
-    // TODO : Read multiple times using page option
-    val response = new WWSClient(wwsInput) execute()
-    logger.debug("Response from WWS " + response)
-
     val xPathInput = new XPathInput(objectTag, detailsTag)
     CSVUtil.populateXPathInput(xpath, xPathInput)
     xPathInput.namespaceMap = CSVUtil.readCSV(namespacePrefix.get)
     logger.debug("Namespace Map" + xPathInput.namespaceMap)
 
-    val xPathHelper = new XPathHelper(xPathInput.namespaceMap, null)
-    val xmlRecords = xPathHelper.evaluate(objectTag, response)
-    logger.debug("Number of records " + xmlRecords.size)
-
-    new DatasetRelation(xmlRecords, xPathInput, sqlContext, schema)
+    val records = new WWSReader(wwsInput, xPathInput) read()
+    new DatasetRelation(records, sqlContext, schema)
   }
 
   override def createRelation(sqlContext: SQLContext,
