@@ -18,7 +18,7 @@ class WWSReader(
                val xPathInput: XPathInput
                ) {
 
-  @transient val logger = Logger.getLogger(classOf[DefaultSource])
+  @transient val logger = Logger.getLogger(classOf[WWSReader])
 
   var currentPage = 0l
   var totalPages = 0l
@@ -71,11 +71,11 @@ class WWSReader(
     if (totalPages == 0l) {
       // Reading total pages and comparing it with currentPage
       val responseXML = XML.loadString(wwsResponse)
-      totalPages = (responseXML \\ "Response_Results" \ "Page_Results").text.toLong
+      totalPages = (responseXML \\ "Response_Results" \ "Total_Pages").text.toLong
     }
 
-    logger.info("Total Pages : " + totalPages)
-    logger.info("Current Page : " + currentPage)
+    logger.debug("Total Pages : " + totalPages)
+    logger.debug("Current Page : " + currentPage)
     totalPages > currentPage
   }
 
@@ -95,7 +95,8 @@ class WWSReader(
     record ++= headerRecord
     for ((column, xpath) <- xPathInput.detailsMap) {
       val result = xPathHelper.evaluateToString(xpath, detail)
-      logger.info("Xpath evaluation response for xpath " + xpath + " \n" + result)
+      logger.debug("Xpath evaluation response for xpath " + xpath + " \n" + result)
+      logger.debug("Xpath evaluation response for xpath " + xpath + " \n" + result)
       record(column) = result
     }
 
@@ -110,8 +111,10 @@ class WWSReader(
       headerRecord(column) = result
     }
 
+    logger.debug("XPath Details Tag : " + xPathInput.detailTag)
+    logger.debug("Row : " + row)
     val details = xPathHelper.evaluate(xPathInput.detailTag, row)
-    logger.info("Details Count " + details.size)
+    logger.debug("Details Count " + details.size)
 
     details.map(detail => read(detail, headerRecord))
   }
