@@ -1,7 +1,7 @@
 package com.springml.spark.workday
 
 import com.springml.spark.workday.model.{WWSInput, XPathInput}
-import com.springml.spark.workday.util.XPathHelper
+import com.springml.spark.workday.util.{XPathHelper, XercesWarningFilter}
 import com.springml.spark.workday.ws.WWSClient
 import com.springml.spark.workday.xml.{ElementTransformer, ParentNodeTransformer}
 import org.apache.log4j.Logger
@@ -25,6 +25,7 @@ class WWSReader(
   val xPathHelper = new XPathHelper(xPathInput.namespaceMap, null)
 
   def read() : List[mutable.Map[String, String]] = {
+    XercesWarningFilter.start()
     var records :List[mutable.Map[String, String]] = List.empty
 
     var response : String = ""
@@ -34,9 +35,11 @@ class WWSReader(
       response = new WWSClient(wwsInput) execute()
       logger.debug("Response from WWS " + response)
 
-      val xmlRecords = xPathHelper.evaluate(xPathInput.objectTag, response)
+      if (response != null && !response.isEmpty) {
+        val xmlRecords = xPathHelper.evaluate(xPathInput.objectTag, response)
 
-      records ++= read(xmlRecords)
+        records ++= read(xmlRecords)
+      }
     }
     while (moreToRead(response))
 
@@ -49,7 +52,7 @@ class WWSReader(
   }
 
   private def withModifiedCount(request: String) : String = {
-    withModifiedContent(request, "Response_Filter", "Count" , "100")
+    withModifiedContent(request, "Response_Filter", "Count", "100")
   }
 
   private def withModifiedContent(request : String, parentNode : String,
@@ -67,6 +70,10 @@ class WWSReader(
   }
 
   private def moreToRead(wwsResponse : String) : Boolean = {
+    if (wwsResponse == null || wwsResponse.isEmpty) {
+      return false
+    }
+
     // To avoid unnecessary parsing
     if (totalPages == 0l) {
       // Reading total pages and comparing it with currentPage
@@ -95,7 +102,6 @@ class WWSReader(
     record ++= headerRecord
     for ((column, xpath) <- xPathInput.detailsMap) {
       val result = xPathHelper.evaluateToString(xpath, detail)
-      logger.debug("Xpath evaluation response for xpath " + xpath + " \n" + result)
       logger.debug("Xpath evaluation response for xpath " + xpath + " \n" + result)
       record(column) = result
     }

@@ -16,17 +16,18 @@ class WWSClient(
 
   @transient val logger = Logger.getLogger(classOf[WWSClient])
 
+  private val webServiceTemplate = createWebServiceTemplate;
+
   def execute() : String = {
     val source = new StreamSource(new StringReader(wwsInput.request))
     val writer = new StringWriter
     val streamResult = new StreamResult(writer)
-    logger.debug("Executing WWS")
     webServiceTemplate.sendSourceAndReceiveToResult(source, usernameTokenHandler, streamResult)
 
     return writer.toString
   }
 
-  private def webServiceTemplate : WebServiceTemplate = {
+  private def createWebServiceTemplate : WebServiceTemplate = {
     val wsTemplate = new WebServiceTemplate()
     wsTemplate.setDefaultUri(wwsInput.wssEndpoint)
 

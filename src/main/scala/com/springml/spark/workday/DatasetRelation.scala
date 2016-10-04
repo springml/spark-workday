@@ -27,7 +27,7 @@ class DatasetRelation(
   override def schema: StructType = {
     if (userSchema != null) {
       userSchema
-    } else {
+    } else if (records.size > 0) {
       // Construct the schema with all fields as String
       val firstRow = records(0)
       val structFields = new Array[StructField](firstRow.size)
@@ -38,12 +38,13 @@ class DatasetRelation(
       }
 
       StructType(structFields)
+    } else {
+      null
     }
   }
 
   override def buildScan(): RDD[Row] = {
     val schemaFields = schema.fields
-    logger.info("Total records size : " + records.size)
     val rowArray = new Array[Row](records.size)
     var rowIndex: Int = 0
     for (row <- records) {
