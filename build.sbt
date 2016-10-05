@@ -1,5 +1,5 @@
 name := "spark-workday"
-version := "1.0"
+version := "1.0.0"
 organization := "com.springml"
 
 scalaVersion := "2.10.6"
