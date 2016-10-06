@@ -43,7 +43,7 @@ object CSVUtil {
       modXpath = "/" + xpath.substring(detailTagIndex + modDetailTag.length)
     }
 
-    logger.info("Modified XPath : " + modXpath)
+    logger.debug("Modified XPath : " + modXpath)
     modXpath
   }
 

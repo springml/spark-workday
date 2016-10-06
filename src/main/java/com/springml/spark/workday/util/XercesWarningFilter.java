@@ -9,6 +9,7 @@ public class XercesWarningFilter extends PrintStream {
     private static final String BEGIN_SIG
             = "Warning:  org.apache.xerces.parsers.SAXParser:";
     private static final String END_SIG = "is not recognized.";
+    private static final String SAAJ_ERROR = "Creating SAAJ 1.3 MessageFactory with SOAP 1.1 Protocol";
 
     private static PrintStream STDOUT;
     private static PrintStream STDERR;
@@ -37,7 +38,8 @@ public class XercesWarningFilter extends PrintStream {
 
     @Override
     public void println(String s) {
-        if (!(s.startsWith(BEGIN_SIG) && s.endsWith(END_SIG))) {
+        if (!((s.startsWith(BEGIN_SIG) && s.endsWith(END_SIG)) ||
+                s.contains(SAAJ_ERROR))) {
             super.print(s);
         }
     }

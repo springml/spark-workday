@@ -1,0 +1,12 @@
+<bsvc:Get_Customer_Invoices_Request xmlns:bsvc="urn:com.workday/bsvc">
+    <bsvc:Response_Filter>
+        <bsvc:As_Of_Effective_Date>2016-09-09</bsvc:As_Of_Effective_Date>
+        <bsvc:As_Of_Entry_DateTime>2016-09-09</bsvc:As_Of_Entry_DateTime>
+        <bsvc:Page>1</bsvc:Page>
+        <bsvc:Count>999</bsvc:Count>
+    </bsvc:Response_Filter>
+    <bsvc:Response_Group>
+        <bsvc:Include_Reference>1</bsvc:Include_Reference>
+        <bsvc:Include_Customer_Invoice_Data>1</bsvc:Include_Customer_Invoice_Data>
+    </bsvc:Response_Group>
+</bsvc:Get_Customer_Invoices_Request>

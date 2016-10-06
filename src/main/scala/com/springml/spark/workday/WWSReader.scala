@@ -3,12 +3,12 @@ package com.springml.spark.workday
 import com.springml.spark.workday.model.{WWSInput, XPathInput}
 import com.springml.spark.workday.util.{XPathHelper, XercesWarningFilter}
 import com.springml.spark.workday.ws.WWSClient
-import com.springml.spark.workday.xml.{ElementTransformer, ParentNodeTransformer}
+import com.springml.spark.workday.xml.PageElementRewriteRule
 import org.apache.log4j.Logger
 
 import scala.collection.mutable
-import scala.xml.XML
-import scala.xml.transform.RuleTransformer
+import scala.xml.transform.{RewriteRule, RuleTransformer}
+import scala.xml.{Elem, Node, XML}
 
 /**
   * Created by sam on 28/9/16.
@@ -29,7 +29,6 @@ class WWSReader(
     var records :List[mutable.Map[String, String]] = List.empty
 
     var response : String = ""
-    wwsInput.request = withModifiedCount(wwsInput.request)
     do {
       wwsInput.request = withModifiedPage(wwsInput.request)
       response = new WWSClient(wwsInput) execute()
@@ -46,27 +45,26 @@ class WWSReader(
     records
   }
 
-  private def withModifiedPage(request: String) : String = {
+  def withModifiedPage(request: String) : String = {
     currentPage += 1
-    withModifiedContent(request, "Response_Filter", "Page" , currentPage.toString)
-  }
+    logger.info("Accessing WWS page " + currentPage)
 
-  private def withModifiedCount(request: String) : String = {
-    withModifiedContent(request, "Response_Filter", "Count", "100")
-  }
+    val perr = new PageElementRewriteRule(currentPage.toString)
+    object rt extends RuleTransformer(perr)
 
-  private def withModifiedContent(request : String, parentNode : String,
-                                  elementName : String, elementValue : String) : String = {
-    val elementTransformer = new ElementTransformer(elementName, elementValue)
-    object et extends RuleTransformer(elementTransformer)
+    object ResponseFilterRewriteRule extends RewriteRule {
+      override def transform(n: Node): Seq[Node] = n match {
+        case sn @ Elem(_, "Response_Filter", _, _, _*) => rt(sn)
+        case other => other
+      }
+    }
 
-    val parentNodeTransformer = new ParentNodeTransformer(parentNode, et)
-    object pnt extends RuleTransformer(parentNodeTransformer)
+    object pageTransformer extends RuleTransformer(ResponseFilterRewriteRule)
 
     val xmlRequest = XML.loadString(request)
-    val modXml = pnt(xmlRequest)
+    val modXML = pageTransformer(xmlRequest)
 
-    modXml.buildString(false)
+    modXML.buildString(false)
   }
 
   private def moreToRead(wwsResponse : String) : Boolean = {
@@ -79,6 +77,7 @@ class WWSReader(
       // Reading total pages and comparing it with currentPage
       val responseXML = XML.loadString(wwsResponse)
       totalPages = (responseXML \\ "Response_Results" \ "Total_Pages").text.toLong
+      logger.info("Total pages : " + totalPages)
     }
 
     logger.debug("Total Pages : " + totalPages)

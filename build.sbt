@@ -29,10 +29,13 @@ libraryDependencies += "org.apache.wss4j" % "wss4j-integration" % "2.1.7"
 libraryDependencies += "org.apache.wss4j" % "wss4j-ws-security-policy-stax" % "2.1.7"
 libraryDependencies += "org.springframework.ws" % "spring-ws-core" % "2.3.0.RELEASE"
 libraryDependencies += "net.sf.saxon" % "Saxon-HE" % "9.7.0-8"
+libraryDependencies += "org.apache.ws.commons.axiom" % "axiom-api" % "1.2.19"
+libraryDependencies += "org.apache.ws.commons.axiom" % "axiom-impl" % "1.2.19"
 
 parallelExecution in Test := false
 
 assemblyMergeStrategy in assembly := {
+ case PathList("META-INF", "axiom.xml", xs @ _*) => MergeStrategy.first
  case PathList("META-INF", xs @ _*) => MergeStrategy.discard
  case x => MergeStrategy.first
 }
@@ -52,7 +55,7 @@ spShortDescription := "Spark Workday Connector"
 spDescription := """Spark Workday Connector
                    | - Creates dataframe using data fetched from Workday Web services """.stripMargin
 
-licenses += "Apache-2.0" -> url("http://opensource.org/licenses/Apache-2.0")
+// licenses += "Apache-2.0" -> url("http://opensource.org/licenses/Apache-2.0")
 credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 publishTo := {
   val nexus = "https://oss.sonatype.org/"
