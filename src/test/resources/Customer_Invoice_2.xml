@@ -1,0 +1,565 @@
+<wd:Customer_Invoice xmlns:wd="urn:com.workday/bsvc">
+  <!--Optional:-->
+  <wd:Customer_Invoice_Reference wd:Descriptor="string">
+    <!--Zero or more repetitions:-->
+    <wd:ID wd:type="string">string</wd:ID>
+  </wd:Customer_Invoice_Reference>
+  <!--Optional:-->
+  <wd:Customer_Invoice_Data>
+    <!--Optional:-->
+    <wd:Customer_Invoice_ID>1234</wd:Customer_Invoice_ID>
+    <!--Optional:-->
+    <wd:Submit>true</wd:Submit>
+    <!--Optional:-->
+    <wd:Locked_in_Workday>true</wd:Locked_in_Workday>
+    <wd:Company_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Company_Reference>
+    <!--Optional:-->
+    <wd:Currency_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Currency_Reference>
+    <wd:Customer_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Customer_Reference>
+    <!--Optional:-->
+    <wd:Bill_To_Address_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Bill_To_Address_Reference>
+    <!--Optional:-->
+    <wd:Populate_with_Default_Bill_To_Contacts>false</wd:Populate_with_Default_Bill_To_Contacts>
+    <!--Zero or more repetitions:-->
+    <wd:Bill_To_Contact_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Bill_To_Contact_Reference>
+    <!--Zero or more repetitions:-->
+    <wd:Bill_To_Address_Data>
+      <!--Zero or more repetitions:-->
+      <wd:Bill-To_Address_Data wd:Formatted_Address="string" wd:Address_Format_Type="string" wd:Defaulted_Business_Site_Address="false" wd:Delete="true" wd:Do_Not_Replace_All="false" wd:Effective_Date="2014-06-10+00:00">
+        <!--Optional:-->
+        <wd:Country_Reference wd:Descriptor="string">
+          <!--Zero or more repetitions:-->
+          <wd:ID wd:type="string">string</wd:ID>
+        </wd:Country_Reference>
+        <!--Optional:-->
+        <wd:Last_Modified>2003-11-10T07:56:46+00:00</wd:Last_Modified>
+        <!--Zero or more repetitions:-->
+        <wd:Address_Line_Data wd:Descriptor="string" wd:Type="string">string</wd:Address_Line_Data>
+        <!--Optional:-->
+        <wd:Municipality>string</wd:Municipality>
+        <!--Optional:-->
+        <wd:Country_City_Reference wd:Descriptor="string">
+          <!--Zero or more repetitions:-->
+          <wd:ID wd:type="string" wd:parent_id="string" wd:parent_type="string">string</wd:ID>
+        </wd:Country_City_Reference>
+        <!--Zero or more repetitions:-->
+        <wd:Submunicipality_Data wd:Address_Component_Name="string" wd:Type="string">string</wd:Submunicipality_Data>
+        <!--Optional:-->
+        <wd:Country_Region_Reference wd:Descriptor="string">
+          <!--Zero or more repetitions:-->
+          <wd:ID wd:type="string">string</wd:ID>
+        </wd:Country_Region_Reference>
+        <!--Optional:-->
+        <wd:Country_Region_Descriptor>string</wd:Country_Region_Descriptor>
+        <!--Zero or more repetitions:-->
+        <wd:Subregion_Data wd:Descriptor="string" wd:Type="string">string</wd:Subregion_Data>
+        <!--Optional:-->
+        <wd:Postal_Code>string</wd:Postal_Code>
+        <!--Zero or more repetitions:-->
+        <wd:Usage_Data wd:Public="true">
+          <!--1 or more repetitions:-->
+          <wd:Type_Data wd:Primary="false">
+            <wd:Type_Reference wd:Descriptor="string">
+              <!--Zero or more repetitions:-->
+              <wd:ID wd:type="string">string</wd:ID>
+            </wd:Type_Reference>
+          </wd:Type_Data>
+          <!--Zero or more repetitions:-->
+          <wd:Use_For_Reference wd:Descriptor="string">
+            <!--Zero or more repetitions:-->
+            <wd:ID wd:type="string">string</wd:ID>
+          </wd:Use_For_Reference>
+          <!--Zero or more repetitions:-->
+          <wd:Use_For_Tenanted_Reference wd:Descriptor="string">
+            <!--Zero or more repetitions:-->
+            <wd:ID wd:type="string">string</wd:ID>
+          </wd:Use_For_Tenanted_Reference>
+          <!--Optional:-->
+          <wd:Comments>string</wd:Comments>
+        </wd:Usage_Data>
+        <!--Optional:-->
+        <wd:Municipality_Local>string</wd:Municipality_Local>
+        <!--Optional:-->
+        <wd:Address_Reference wd:Descriptor="string">
+          <!--Zero or more repetitions:-->
+          <wd:ID wd:type="string">string</wd:ID>
+        </wd:Address_Reference>
+        <!--Optional:-->
+        <wd:Address_ID>string</wd:Address_ID>
+      </wd:Bill-To_Address_Data>
+    </wd:Bill_To_Address_Data>
+    <!--Optional:-->
+    <wd:Award_Billing_Sequence_Number>1000.00</wd:Award_Billing_Sequence_Number>
+    <!--Optional:-->
+    <wd:Ship_To_Customer_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Ship_To_Customer_Reference>
+    <!--Optional:-->
+    <wd:Ship_To_Address_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Ship_To_Address_Reference>
+    <!--Zero or more repetitions:-->
+    <wd:Ship_To_Address_Data wd:Formatted_Address="string" wd:Address_Format_Type="string" wd:Defaulted_Business_Site_Address="true" wd:Delete="false" wd:Do_Not_Replace_All="false" wd:Effective_Date="2017-08-17">
+      <!--Optional:-->
+      <wd:Country_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Country_Reference>
+      <!--Optional:-->
+      <wd:Last_Modified>2012-04-24T21:37:57+00:00</wd:Last_Modified>
+      <!--Zero or more repetitions:-->
+      <wd:Address_Line_Data wd:Descriptor="string" wd:Type="string">string</wd:Address_Line_Data>
+      <!--Optional:-->
+      <wd:Municipality>string</wd:Municipality>
+      <!--Optional:-->
+      <wd:Country_City_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string" wd:parent_id="string" wd:parent_type="string">string</wd:ID>
+      </wd:Country_City_Reference>
+      <!--Zero or more repetitions:-->
+      <wd:Submunicipality_Data wd:Address_Component_Name="string" wd:Type="string">string</wd:Submunicipality_Data>
+      <!--Optional:-->
+      <wd:Country_Region_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Country_Region_Reference>
+      <!--Optional:-->
+      <wd:Country_Region_Descriptor>string</wd:Country_Region_Descriptor>
+      <!--Zero or more repetitions:-->
+      <wd:Subregion_Data wd:Descriptor="string" wd:Type="string">string</wd:Subregion_Data>
+      <!--Optional:-->
+      <wd:Postal_Code>string</wd:Postal_Code>
+      <!--Zero or more repetitions:-->
+      <wd:Usage_Data wd:Public="true">
+        <!--1 or more repetitions:-->
+        <wd:Type_Data wd:Primary="false">
+          <wd:Type_Reference wd:Descriptor="string">
+            <!--Zero or more repetitions:-->
+            <wd:ID wd:type="string">string</wd:ID>
+          </wd:Type_Reference>
+        </wd:Type_Data>
+        <!--Zero or more repetitions:-->
+        <wd:Use_For_Reference wd:Descriptor="string">
+          <!--Zero or more repetitions:-->
+          <wd:ID wd:type="string">string</wd:ID>
+        </wd:Use_For_Reference>
+        <!--Zero or more repetitions:-->
+        <wd:Use_For_Tenanted_Reference wd:Descriptor="string">
+          <!--Zero or more repetitions:-->
+          <wd:ID wd:type="string">string</wd:ID>
+        </wd:Use_For_Tenanted_Reference>
+        <!--Optional:-->
+        <wd:Comments>string</wd:Comments>
+      </wd:Usage_Data>
+      <!--Optional:-->
+      <wd:Municipality_Local>string</wd:Municipality_Local>
+      <!--Optional:-->
+      <wd:Address_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Address_Reference>
+      <!--Optional:-->
+      <wd:Address_ID>string</wd:Address_ID>
+    </wd:Ship_To_Address_Data>
+    <!--Optional:-->
+    <wd:Billable_Project_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Billable_Project_Reference>
+    <!--Optional:-->
+    <wd:Invoice_Number>string</wd:Invoice_Number>
+    <!--Optional:-->
+    <wd:Invoice_Date>2011-12-25</wd:Invoice_Date>
+    <!--Optional:-->
+    <wd:Accounting_Date>2015-10-10+00:00</wd:Accounting_Date>
+    <!--Optional:-->
+    <wd:From_Date>2018-07-19+00:00</wd:From_Date>
+    <!--Optional:-->
+    <wd:To_Date>2004-12-06+00:00</wd:To_Date>
+    <!--Optional:-->
+    <wd:Due_Date_Override>2006-12-05</wd:Due_Date_Override>
+    <!--Optional:-->
+    <wd:Collection_Date>2016-09-11</wd:Collection_Date>
+    <!--Optional:-->
+    <wd:Payment_Amount_Promised>1000.00</wd:Payment_Amount_Promised>
+    <!--Optional:-->
+    <wd:Collection_Reason_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Collection_Reason_Reference>
+    <!--Optional:-->
+    <wd:Followup_Date>2005-02-02</wd:Followup_Date>
+    <!--Optional:-->
+    <wd:Dispute_Date>2016-10-07+00:00</wd:Dispute_Date>
+    <!--Optional:-->
+    <wd:Dispute_Amount>1000.00</wd:Dispute_Amount>
+    <!--Zero or more repetitions:-->
+    <wd:Dispute_Reason_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Dispute_Reason_Reference>
+    <!--Optional:-->
+    <wd:Risk_Score>1000.00</wd:Risk_Score>
+    <!--Optional:-->
+    <wd:Risk_Score_Date>2002-11-05</wd:Risk_Score_Date>
+    <!--Optional:-->
+    <wd:Control_Amount_Total>1000.00</wd:Control_Amount_Total>
+    <!--Optional:-->
+    <wd:Payment_Terms_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Payment_Terms_Reference>
+    <!--Optional:-->
+    <wd:Payment_Type_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Payment_Type_Reference>
+    <!--Optional:-->
+    <wd:Payment_Status>string</wd:Payment_Status>
+    <!--Optional:-->
+    <wd:Document_Status>string</wd:Document_Status>
+    <!--Optional:-->
+    <wd:Amount_Due>1000.00</wd:Amount_Due>
+    <!--Optional:-->
+    <wd:Customer_Invoice_Type_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Customer_Invoice_Type_Reference>
+    <!--Optional:-->
+    <wd:Tax_Code_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Tax_Code_Reference>
+    <!--Optional:-->
+    <wd:Customer_PO_Number>string</wd:Customer_PO_Number>
+    <!--Optional:-->
+    <wd:On_Hold>true</wd:On_Hold>
+    <!--Optional:-->
+    <wd:Is_Excluded_from_Dunning_Letter>false</wd:Is_Excluded_from_Dunning_Letter>
+    <!--Optional:-->
+    <wd:Include_Customer_Worktags>true</wd:Include_Customer_Worktags>
+    <!--Zero or more repetitions:-->
+    <wd:Worktags_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Worktags_Reference>
+    <!--Optional:-->
+    <wd:Document_Link>string</wd:Document_Link>
+    <!--Optional:-->
+    <wd:Memo>string</wd:Memo>
+    <!--Optional:-->
+    <wd:Company_Tax_ID_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Company_Tax_ID_Reference>
+    <!--Optional:-->
+    <wd:Customer_Tax_ID_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Customer_Tax_ID_Reference>
+    <!--Optional:-->
+    <wd:Currency_Rate_Type_Override_Reference wd:Descriptor="string">
+      <!--Zero or more repetitions:-->
+      <wd:ID wd:type="string">string</wd:ID>
+    </wd:Currency_Rate_Type_Override_Reference>
+    <!--Optional:-->
+    <wd:Currency_Rate_Date_Override>2008-08-28+00:00</wd:Currency_Rate_Date_Override>
+    <!--Optional:-->
+    <wd:Currency_Rate_Manual_Override_Reference>1000.00</wd:Currency_Rate_Manual_Override_Reference>
+    <!--Optional:-->
+    <wd:Tax_Calculation_Details>string</wd:Tax_Calculation_Details>
+    <!--Zero or more repetitions:-->
+    <wd:Customer_Invoice_Line_Replacement_Data>
+      <!--Optional:-->
+      <wd:Customer_Invoice_Line_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Customer_Invoice_Line_Reference>
+      <!--Optional:-->
+      <wd:Customer_Invoice_Line_Reference_ID>string</wd:Customer_Invoice_Line_Reference_ID>
+      <!--Optional:-->
+      <wd:Line_Order>string</wd:Line_Order>
+      <!--Optional:-->
+      <wd:Intercompany_Affiliate_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Intercompany_Affiliate_Reference>
+      <!--Optional:-->
+      <wd:Sales_Item_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Sales_Item_Reference>
+      <!--Optional:-->
+      <wd:Revenue_Category_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Revenue_Category_Reference>
+      <!--Optional:-->
+      <wd:Line_Item_Description>string</wd:Line_Item_Description>
+      <!--Optional:-->
+      <wd:Ship_To_Customer_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Ship_To_Customer_Reference>
+      <!--Optional:-->
+      <wd:Ship_To_Address_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Ship_To_Address_Reference>
+      <!--Zero or more repetitions:-->
+      <wd:Ship_To_Address_Data wd:Formatted_Address="string" wd:Address_Format_Type="string" wd:Defaulted_Business_Site_Address="true" wd:Delete="false" wd:Do_Not_Replace_All="false" wd:Effective_Date="2019-05-04">
+        <!--Optional:-->
+        <wd:Country_Reference wd:Descriptor="string">
+          <!--Zero or more repetitions:-->
+          <wd:ID wd:type="string">string</wd:ID>
+        </wd:Country_Reference>
+        <!--Optional:-->
+        <wd:Last_Modified>2010-04-24T15:59:19+00:00</wd:Last_Modified>
+        <!--Zero or more repetitions:-->
+        <wd:Address_Line_Data wd:Descriptor="string" wd:Type="string">string</wd:Address_Line_Data>
+        <!--Optional:-->
+        <wd:Municipality>string</wd:Municipality>
+        <!--Optional:-->
+        <wd:Country_City_Reference wd:Descriptor="string">
+          <!--Zero or more repetitions:-->
+          <wd:ID wd:type="string" wd:parent_id="string" wd:parent_type="string">string</wd:ID>
+        </wd:Country_City_Reference>
+        <!--Zero or more repetitions:-->
+        <wd:Submunicipality_Data wd:Address_Component_Name="string" wd:Type="string">string</wd:Submunicipality_Data>
+        <!--Optional:-->
+        <wd:Country_Region_Reference wd:Descriptor="string">
+          <!--Zero or more repetitions:-->
+          <wd:ID wd:type="string">string</wd:ID>
+        </wd:Country_Region_Reference>
+        <!--Optional:-->
+        <wd:Country_Region_Descriptor>string</wd:Country_Region_Descriptor>
+        <!--Zero or more repetitions:-->
+        <wd:Subregion_Data wd:Descriptor="string" wd:Type="string">string</wd:Subregion_Data>
+        <!--Optional:-->
+        <wd:Postal_Code>string</wd:Postal_Code>
+        <!--Zero or more repetitions:-->
+        <wd:Usage_Data wd:Public="true">
+          <!--1 or more repetitions:-->
+          <wd:Type_Data wd:Primary="true">
+            <wd:Type_Reference wd:Descriptor="string">
+              <!--Zero or more repetitions:-->
+              <wd:ID wd:type="string">string</wd:ID>
+            </wd:Type_Reference>
+          </wd:Type_Data>
+          <!--Zero or more repetitions:-->
+          <wd:Use_For_Reference wd:Descriptor="string">
+            <!--Zero or more repetitions:-->
+            <wd:ID wd:type="string">string</wd:ID>
+          </wd:Use_For_Reference>
+          <!--Zero or more repetitions:-->
+          <wd:Use_For_Tenanted_Reference wd:Descriptor="string">
+            <!--Zero or more repetitions:-->
+            <wd:ID wd:type="string">string</wd:ID>
+          </wd:Use_For_Tenanted_Reference>
+          <!--Optional:-->
+          <wd:Comments>string</wd:Comments>
+        </wd:Usage_Data>
+        <!--Optional:-->
+        <wd:Municipality_Local>string</wd:Municipality_Local>
+        <!--Optional:-->
+        <wd:Address_Reference wd:Descriptor="string">
+          <!--Zero or more repetitions:-->
+          <wd:ID wd:type="string">string</wd:ID>
+        </wd:Address_Reference>
+        <!--Optional:-->
+        <wd:Address_ID>string</wd:Address_ID>
+      </wd:Ship_To_Address_Data>
+      <!--Optional:-->
+      <wd:Tax_Applicability_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Tax_Applicability_Reference>
+      <!--Optional:-->
+      <wd:Tax_Code_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Tax_Code_Reference>
+      <!--Optional:-->
+      <wd:Withholding_Tax_Code_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Withholding_Tax_Code_Reference>
+      <!--Optional:-->
+      <wd:Customer_Contract_Line_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Customer_Contract_Line_Reference>
+      <!--Optional:-->
+      <wd:Quantity>1000.00</wd:Quantity>
+      <!--Optional:-->
+      <wd:Unit_of_Measure_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Unit_of_Measure_Reference>
+      <!--Optional:-->
+      <wd:Quantity_2>1000.00</wd:Quantity_2>
+      <!--Optional:-->
+      <wd:Unit_of_Measure_2_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Unit_of_Measure_2_Reference>
+      <!--Optional:-->
+      <wd:Unit_Cost>1000.00</wd:Unit_Cost>
+      <!--Optional:-->
+      <wd:Extended_Amount>1000.00</wd:Extended_Amount>
+      <!--Optional:-->
+      <wd:Transaction_Date>2013-07-07+00:00</wd:Transaction_Date>
+      <!--Optional:-->
+      <wd:From_Date>2001-01-03</wd:From_Date>
+      <!--Optional:-->
+      <wd:To_Date>2014-01-10</wd:To_Date>
+      <!--Optional:-->
+      <wd:Billable_Project_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Billable_Project_Reference>
+      <!--Optional:-->
+      <wd:Project_Plan_Phase_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Project_Plan_Phase_Reference>
+      <!--Optional:-->
+      <wd:Project_Plan_Task_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Project_Plan_Task_Reference>
+      <!--Optional:-->
+      <wd:Deferred_Revenue>true</wd:Deferred_Revenue>
+      <!--Zero or more repetitions:-->
+      <wd:Revenue_Recognition_Schedule_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Revenue_Recognition_Schedule_Reference>
+      <!--Optional:-->
+      <wd:Revenue_Recognition_Schedule_Template_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Revenue_Recognition_Schedule_Template_Reference>
+      <!--Optional:-->
+      <wd:Memo>string</wd:Memo>
+      <!--Optional:-->
+      <wd:Analytical_Amount>1000.00</wd:Analytical_Amount>
+      <!--Zero or more repetitions:-->
+      <wd:Worktags_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Worktags_Reference>
+      <!--Optional:-->
+      <wd:Calculated_Tax_Amount>1000.00</wd:Calculated_Tax_Amount>
+    </wd:Customer_Invoice_Line_Replacement_Data>
+    <!--Zero or more repetitions:-->
+    <wd:Tax_Code_Data>
+      <!--Optional:-->
+      <wd:Tax_Applicability_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Tax_Applicability_Reference>
+      <!--Optional:-->
+      <wd:Tax_Code_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Tax_Code_Reference>
+      <!--Optional:-->
+      <wd:Taxable_Amount>1000.00</wd:Taxable_Amount>
+      <!--Zero or more repetitions:-->
+      <wd:Tax_Rate_Data>
+        <!--Optional:-->
+        <wd:Tax_Rate_Reference wd:Descriptor="string">
+          <!--Zero or more repetitions:-->
+          <wd:ID wd:type="string">string</wd:ID>
+        </wd:Tax_Rate_Reference>
+        <!--Optional:-->
+        <wd:Taxable_Amount>1000.00</wd:Taxable_Amount>
+      </wd:Tax_Rate_Data>
+    </wd:Tax_Code_Data>
+    <!--Zero or more repetitions:-->
+    <wd:Attachment_Data wd:Content_Type="string" wd:Filename="string" wd:Encoding="string" wd:Compressed="false">
+      <!--Optional:-->
+      <wd:File_Content>dGVtcGVzdGF0ZXNxdWU=</wd:File_Content>
+      <!--Optional:-->
+      <wd:Comment>string</wd:Comment>
+    </wd:Attachment_Data>
+    <!--Zero or more repetitions:-->
+    <wd:Note_Data>
+      <!--Optional:-->
+      <wd:Created>2008-10-09T04:30:24</wd:Created>
+      <!--Optional:-->
+      <wd:Last_Updated>2007-04-22T08:35:03+00:00</wd:Last_Updated>
+      <!--Optional:-->
+      <wd:Worker_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Worker_Reference>
+      <!--Optional:-->
+      <wd:Business_Entity_Contact_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:Business_Entity_Contact_Reference>
+      <!--Optional:-->
+      <wd:System_User_Reference wd:Descriptor="string">
+        <!--Zero or more repetitions:-->
+        <wd:ID wd:type="string">string</wd:ID>
+      </wd:System_User_Reference>
+      <!--Optional:-->
+      <wd:Note_Content>string</wd:Note_Content>
+    </wd:Note_Data>
+    <!--Optional:-->
+    <wd:Customer_Invoice_Intercompany_Sub_Process>
+      <!--Optional:-->
+      <wd:Business_Sub_Process_Parameters>
+        <!--You have a CHOICE of the next 2 items at this level-->
+        <!--Optional:-->
+        <wd:Auto_Complete>false</wd:Auto_Complete>
+        <!--Optional:-->
+        <wd:Skip>false</wd:Skip>
+        <!--Optional:-->
+        <wd:Business_Process_Comment_Data>
+          <!--Optional:-->
+          <wd:Comment>string</wd:Comment>
+          <!--Optional:-->
+          <wd:Worker_Reference wd:Descriptor="string">
+            <!--Zero or more repetitions:-->
+            <wd:ID wd:type="string">string</wd:ID>
+          </wd:Worker_Reference>
+        </wd:Business_Process_Comment_Data>
+        <!--Zero or more repetitions:-->
+        <wd:Business_Process_Attachment_Data>
+          <wd:File_Name>string</wd:File_Name>
+          <!--Optional:-->
+          <wd:Event_Attachment_Description>string</wd:Event_Attachment_Description>
+          <!--Optional:-->
+          <wd:Event_Attachment_Category_Reference wd:Descriptor="string">
+            <!--Zero or more repetitions:-->
+            <wd:ID wd:type="string">string</wd:ID>
+          </wd:Event_Attachment_Category_Reference>
+          <!--Optional:-->
+          <wd:File>ZXQ=</wd:File>
+          <!--Optional:-->
+          <wd:Content_Type>string</wd:Content_Type>
+        </wd:Business_Process_Attachment_Data>
+      </wd:Business_Sub_Process_Parameters>
+    </wd:Customer_Invoice_Intercompany_Sub_Process>
+  </wd:Customer_Invoice_Data>
+</wd:Customer_Invoice>

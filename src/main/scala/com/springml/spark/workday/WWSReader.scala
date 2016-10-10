@@ -37,7 +37,9 @@ class WWSReader(
       if (response != null && !response.isEmpty) {
         val xmlRecords = xPathHelper.evaluate(xPathInput.objectTag, response)
 
-        records ++= read(xmlRecords)
+        if (!xmlRecords.isEmpty) {
+          records ++= read(xmlRecords)
+        }
       }
     }
     while (moreToRead(response))
@@ -85,7 +87,7 @@ class WWSReader(
     totalPages > currentPage
   }
 
-  private def read(xmlRecords : List[String]) : List[scala.collection.mutable.Map[String, String]] = {
+  def read(xmlRecords : List[String]) : List[scala.collection.mutable.Map[String, String]] = {
     val recordLists = xmlRecords.map(row => read(row))
     var records : List[mutable.Map[String, String]] = List.empty
 
