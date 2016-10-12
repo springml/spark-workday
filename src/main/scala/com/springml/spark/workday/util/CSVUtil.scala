@@ -59,7 +59,8 @@ object CSVUtil {
         if (!line.startsWith("#")) {
           val cols = line.split(",").map(_.trim)
           if (cols.length != 3) {
-            throw new Exception("Invalid Row : " + line + "\n Please make sure rows are specified as 'Type','FieldName','XPath' in " + csvLocation)
+            throw new Exception("Invalid Row : " + line +
+              "\n Please make sure rows are specified as 'Type','FieldName','XPath' in " + csvLocation)
           }
 
           val elementType = cols(0)
@@ -68,8 +69,11 @@ object CSVUtil {
 
           if ("details".equalsIgnoreCase(elementType)) {
             xPathInput.detailsMap += fieldName -> details(xpath, xPathInput.detailTag)
-          } else {
+          } else if ("headers".equalsIgnoreCase(elementType)) {
             xPathInput.headersMap += fieldName -> xpath
+          } else {
+            throw new Exception("Invalid Type : '" + elementType + "' in " + csvLocation +
+              ". Supported types are 'headers' and 'details'")
           }
         } else {
           logger.info("Ignoring commented line " + line)
