@@ -123,7 +123,12 @@ class WWSReader(
     val details = xPathHelper.evaluate(xPathInput.detailTag, row)
     logger.debug("Details Count " + details.size)
 
-    details.map(detail => read(detail, headerRecord))
+    if (details.isEmpty) {
+      // No details field
+      List(headerRecord)
+    } else {
+      details.map(detail => read(detail, headerRecord))
+    }
   }
 
 }
