@@ -18,6 +18,10 @@ object CSVUtil {
       for (line <- bufferedSource.getLines) {
         if (!line.startsWith("#")) {
           val cols = line.split(",").map(_.trim)
+          if (cols.length != 2) {
+            throw new Exception("Invalid Row : " + line + "\n Please make sure rows are specified as 'Prefix','namespace' in " + csvLocation)
+          }
+
           resultMap += cols(0) -> cols(1)
         } else {
           logger.info("Ignoring commented line " + line)
@@ -54,6 +58,10 @@ object CSVUtil {
       for (line <- bufferedSource.getLines) {
         if (!line.startsWith("#")) {
           val cols = line.split(",").map(_.trim)
+          if (cols.length != 3) {
+            throw new Exception("Invalid Row : " + line + "\n Please make sure rows are specified as 'Type','FieldName','XPath' in " + csvLocation)
+          }
+
           val elementType = cols(0)
           val fieldName = cols(1)
           val xpath = cols(2)
