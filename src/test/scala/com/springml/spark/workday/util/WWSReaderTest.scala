@@ -51,6 +51,32 @@ class WWSReaderTest extends FunSuite with MockitoSugar with BeforeAndAfterEach {
     assert(firstRecord("Quantity").equals("1000.00"))
   }
 
+  test ("Test read with Invalid detailsTagPath") {
+    val csvURL = getClass.getResource("/xpath.csv")
+    val objectTag = "//wd:Customer_Invoice"
+    val detailsTag = "invalid"
+    val xpathInput = new XPathInput(objectTag, detailsTag)
+
+    val namespaceFile = getClass.getResource("/namespaces.csv").getPath
+    xpathInput.namespaceMap = CSVUtil.readCSV(namespaceFile)
+
+    CSVUtil.populateXPathInput(csvURL.getPath, xpathInput)
+
+    var resultListBuf = new ListBuffer[String]()
+    resultListBuf += getResourceContent("/Customer_Invoice_1.xml")
+    resultListBuf += getResourceContent("/Customer_Invoice_2.xml")
+
+    val wWSReader = new WWSReader(null, xpathInput)
+    val results = wWSReader.read(resultListBuf.toList)
+
+    assert(results.size == 2)
+    val firstRecord = results(0)
+
+    intercept[NoSuchElementException] {
+      firstRecord("Quantity")
+    }
+  }
+
   private def getResourceContent(path: String): String = {
     val resStream = getClass().getResourceAsStream(path)
     scala.io.Source.fromInputStream(resStream).mkString
