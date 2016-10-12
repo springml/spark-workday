@@ -165,7 +165,7 @@
               <bsvc:ID bsvc:type="string" bsvc:parent_id="string" bsvc:parent_type="string">string</bsvc:ID>
             </bsvc:Country_City_Reference>
             <!--Zero or more repetitions:-->
-            <bsvc:Submunicipality_Data bsvc:Address_Component_Name="string" bsvc:Type="string">string</bsvc:Submunicipality_Data>
+            <bsvc:Submunicipality_Data bsvc:Address_Component_Name="address_component" bsvc:Type="string">string</bsvc:Submunicipality_Data>
             <!--Optional:-->
             <bsvc:Country_Region_Reference bsvc:Descriptor="string">
               <!--Zero or more repetitions:-->
@@ -241,7 +241,7 @@
             <bsvc:ID bsvc:type="string" bsvc:parent_id="string" bsvc:parent_type="string">string</bsvc:ID>
           </bsvc:Country_City_Reference>
           <!--Zero or more repetitions:-->
-          <bsvc:Submunicipality_Data bsvc:Address_Component_Name="string" bsvc:Type="string">string</bsvc:Submunicipality_Data>
+          <bsvc:Submunicipality_Data bsvc:Address_Component_Name="address_component" bsvc:Type="string">string</bsvc:Submunicipality_Data>
           <!--Optional:-->
           <bsvc:Country_Region_Reference bsvc:Descriptor="string">
             <!--Zero or more repetitions:-->
@@ -449,7 +449,7 @@
               <bsvc:ID bsvc:type="string" bsvc:parent_id="string" bsvc:parent_type="string">string</bsvc:ID>
             </bsvc:Country_City_Reference>
             <!--Zero or more repetitions:-->
-            <bsvc:Submunicipality_Data bsvc:Address_Component_Name="string" bsvc:Type="string">string</bsvc:Submunicipality_Data>
+            <bsvc:Submunicipality_Data bsvc:Address_Component_Name="address_component" bsvc:Type="string">string</bsvc:Submunicipality_Data>
             <!--Optional:-->
             <bsvc:Country_Region_Reference bsvc:Descriptor="string">
               <!--Zero or more repetitions:-->
@@ -730,7 +730,7 @@
               <bsvc:ID bsvc:type="string" bsvc:parent_id="string" bsvc:parent_type="string">string</bsvc:ID>
             </bsvc:Country_City_Reference>
             <!--Zero or more repetitions:-->
-            <bsvc:Submunicipality_Data bsvc:Address_Component_Name="string" bsvc:Type="string">string</bsvc:Submunicipality_Data>
+            <bsvc:Submunicipality_Data bsvc:Address_Component_Name="address_component" bsvc:Type="string">string</bsvc:Submunicipality_Data>
             <!--Optional:-->
             <bsvc:Country_Region_Reference bsvc:Descriptor="string">
               <!--Zero or more repetitions:-->
@@ -806,7 +806,7 @@
             <bsvc:ID bsvc:type="string" bsvc:parent_id="string" bsvc:parent_type="string">string</bsvc:ID>
           </bsvc:Country_City_Reference>
           <!--Zero or more repetitions:-->
-          <bsvc:Submunicipality_Data bsvc:Address_Component_Name="string" bsvc:Type="string">string</bsvc:Submunicipality_Data>
+          <bsvc:Submunicipality_Data bsvc:Address_Component_Name="address_component" bsvc:Type="string">string</bsvc:Submunicipality_Data>
           <!--Optional:-->
           <bsvc:Country_Region_Reference bsvc:Descriptor="string">
             <!--Zero or more repetitions:-->
@@ -1014,7 +1014,7 @@
               <bsvc:ID bsvc:type="string" bsvc:parent_id="string" bsvc:parent_type="string">string</bsvc:ID>
             </bsvc:Country_City_Reference>
             <!--Zero or more repetitions:-->
-            <bsvc:Submunicipality_Data bsvc:Address_Component_Name="string" bsvc:Type="string">string</bsvc:Submunicipality_Data>
+            <bsvc:Submunicipality_Data bsvc:Address_Component_Name="address_component" bsvc:Type="string">string</bsvc:Submunicipality_Data>
             <!--Optional:-->
             <bsvc:Country_Region_Reference bsvc:Descriptor="string">
               <!--Zero or more repetitions:-->

@@ -1,0 +1,4 @@
+headers,InvoiceId,/wd:Customer_Invoice/wd:Customer_Invoice_Data/wd:Customer_Invoice_ID/text()
+headers,InvoiceNumber,/wd:Customer_Invoice/wd:Customer_Invoice_Data/wd:Invoice_Number/text()
+headers,Address_Component,string(/wd:Customer_Invoice/wd:Customer_Invoice_Data/wd:Bill_To_Address_Data/wd:Bill-To_Address_Data/wd:Submunicipality_Data/@wd:Address_Component_Name)
+details,Analytical_Amount,/wd:Customer_Invoice/wd:Customer_Invoice_Data/wd:Customer_Invoice_Line_Replacement_Data/wd:Analytical_Amount/text()
