@@ -1,4 +1,4 @@
-# Spark Salesforce Library
+# Spark Workday Library
 
 Spark Connector for Workday is a SOAP web services wrapper around the Workday API published [here]( https://community.workday.com/custom/developer/API/index.html).  
 
