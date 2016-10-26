@@ -1,6 +1,5 @@
-package com.springml.spark.workday.util
+package com.springml.spark.workday
 
-import com.springml.spark.workday.DatasetRelation
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.types.{IntegerType, StringType, StructField, StructType}
 import org.apache.spark.sql.{Row, SQLContext}
