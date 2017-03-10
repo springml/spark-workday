@@ -39,7 +39,7 @@ class DatasetRelation(
 
       StructType(structFields)
     } else {
-      null
+      StructType(List.empty)
     }
   }
 

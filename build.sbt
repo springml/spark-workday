@@ -1,8 +1,8 @@
 name := "spark-workday"
-version := "1.0.0"
+version := "1.1.0"
 organization := "com.springml"
 
-scalaVersion := "2.10.6"
+scalaVersion := "2.11.8"
 
 resolvers += "sonatype-snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
 resolvers += "bintray-spark-packages" at "https://dl.bintray.com/spark-packages/maven/"
@@ -43,7 +43,7 @@ assemblyMergeStrategy in assembly := {
 // Spark Package Details (sbt-spark-package)
 spName := "springml/spark-workday"
 spAppendScalaVersion := true
-sparkVersion := "1.6.0"
+sparkVersion := "2.1.0"
 sparkComponents += "sql"
 
 spDependencies += "elsevierlabs-os/spark-xml-utils:1.3.0"
